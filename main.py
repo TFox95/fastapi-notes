@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import time
 
+from .auth.api.routes import router as auth_routes
+from .sql_app.api.routes import router as sql_routes
+
 NAMESPACE: str = f"Base Server"
 
 def get_application():
@@ -46,3 +49,5 @@ async def errors_handling(request: Request, call_next):
 async def basic(request:Request):
     return "{'hello': 'world'}"
 
+app.include_router(sql_routes)
+app.include_router(auth_routes)
