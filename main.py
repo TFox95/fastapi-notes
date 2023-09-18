@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import time
 
-from .auth.api.routes import router as auth_routes
-from .sql_app.api.routes import router as sql_routes
+from auth.api.routes import router as auth_routes
+from sql_app.api.routes import router as sql_routes
 
 NAMESPACE: str = f"Base Server"
 
