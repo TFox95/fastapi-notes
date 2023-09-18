@@ -1,23 +1,15 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from core.config import settings
-
-from sql_app.api import routes as sql_routes
-from auth.api import routes as auth_routes
 
 import time
 
 NAMESPACE: str = f"Base Server"
 
 def get_application():
-    _app = FastAPI(title=settings.PROJECT_NAME,
-                    description="MicroService for handling Authentication",
-                    version="0.3.1"
+    _app = FastAPI(description="MicroService for handling Authentication",version="0.3.1"
                     )
     _app.add_middleware(
         CORSMiddleware,
-        allow_origins=[str(origin)
-                       for origin in settings.BACKEND_CORS_ORIGINS],
         allow_credentials=True,
         allow_methods=["POST", "PATCH", "GET", "DELETE", "PUT", "OPTIONS"],
         allow_headers=["Access-Control-Allow-Headers", "Origin", "X-Requested-Width", "Content-Type", "Accept", "Authorization"],
@@ -51,6 +43,3 @@ async def errors_handling(request: Request, call_next):
 async def basic(request:Request):
     return "{'hello': 'world'}"
 
-#Routes
-#app.include_router(sql_routes.router)
-#app.include_router(auth_routes.router)
