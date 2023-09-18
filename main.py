@@ -6,7 +6,9 @@ import time
 NAMESPACE: str = f"Base Server"
 
 def get_application():
-    _app = FastAPI(description="MicroService for handling Authentication",version="0.3.1"
+    _app = FastAPI(
+        description="MicroService for handling Authentication",
+        version="0.3.1"
                     )
     _app.add_middleware(
         CORSMiddleware,
@@ -38,6 +40,7 @@ async def errors_handling(request: Request, call_next):
         raise HTTPException(status_code=404, detail="The requested resource does not exist")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
+
 
 @app.get("/")
 async def basic(request:Request):
