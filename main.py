@@ -52,5 +52,5 @@ async def basic(request:Request):
     return "{'hello': 'world'}"
 
 #Routes
-app.include_router(sql_routes.router)
-app.include_router(auth_routes.router)
+#app.include_router(sql_routes.router)
+#app.include_router(auth_routes.router)
